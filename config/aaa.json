@@ -1,0 +1,34 @@
+[
+  {
+    "chinese_prompt": "清晨，阳光透过窗帘缝隙洒在卧室，女孩在床上被轻柔唤醒",
+    "english_prompt": "In the early morning, sunlight shines through the gaps in the curtains into the bedroom, gently waking up the girl in bed"
+  },
+  {
+    "chinese_prompt": "女孩利索起床，脸上洋溢着元气开启周一",
+    "english_prompt": "The girl gets up briskly, with a vibrant look on her face as she starts her Monday"
+  },
+  {
+    "chinese_prompt": "女孩洗漱后穿上简约职业装，化着淡雅妆容，对着镜子给自己加油打气",
+    "english_prompt": "After washing up, the girl puts on a simple business suit and a delicate makeup, then encourages herself in front of the mirror"
+  },
+  {
+    "chinese_prompt": "女孩出门买了杯热咖啡，边走边吸着咖啡香气走在上班路上",
+    "english_prompt": "The girl goes out to buy a cup of hot coffee and walks to work while inhaling the aroma of the coffee"
+  },
+  {
+    "chinese_prompt": "工作中的女孩专注投入，高效处理事务，累了起身看向窗外风景",
+    "english_prompt": "At work, the girl is highly focused and efficiently handling tasks. When she gets tired, she stands up and looks out of the window"
+  },
+  {
+    "chinese_prompt": "午休时，女孩在安静角落享受美食，翻阅喜欢的书",
+    "english_prompt": "During the lunch break, the girl enjoys her meal in a quiet corner and reads her favorite book"
+  },
+  {
+    "chinese_prompt": "下班后，女孩慢悠悠走回家，看着路边小花心情愉悦",
+    "english_prompt": "After work, the girl strolls home slowly, looking happily at the small flowers by the roadside"
+  },
+  {
+    "chinese_prompt": "女孩到家后泡热水澡，然后窝在沙发上听音乐，疲惫消散",
+    "english_prompt": "After arriving home, the girl takes a hot bath and then curls up on the sofa listening to music, with the exhaustion disappearing"
+  }
+]
