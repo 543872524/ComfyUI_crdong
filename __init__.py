@@ -2,6 +2,7 @@ from .crd_nodes.image_nodes import *
 from .crd_nodes.my_nodes import *
 from .crd_nodes.prompt_nodes import *
 from .crd_nodes.video_nodes import *
+from .crd_nodes.audio_nodes import *
 
 NODES_CONF = {
     "INTConstant": {"class": INTConstant, "name": "INT Constant"},
@@ -16,6 +17,7 @@ NODES_CONF = {
     "PromptExampleNode": {"class": PromptExampleNode, "name": "Prompt Example Node"},
     "PromptJoinOrList": {"class": PromptJoinOrList, "name": "Prompt Join or List"},
     "PromptList": {"class": PromptList, "name": "Prompt List"},
+    "CRDAudioLengthNode": {"class": CRDAudioLengthNode, "name": "CRD Audio Length Node"},
 }
 
 
