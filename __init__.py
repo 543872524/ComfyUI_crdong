@@ -1,4 +1,4 @@
-from test_nodes.prompt_test import *
+from .test_nodes.prompt_test import *
 from .crd_nodes.image_nodes import *
 from .crd_nodes.my_nodes import *
 from .crd_nodes.prompt_nodes import *
