@@ -10,12 +10,14 @@ class PromptBatchMulti():
         ONE_IMAGE_STYLE = get_prompt_conf().get('ONE_IMAGE_STYLE', [])
         return {
             "required": {
-                "inputcount": ("INT", {"default": 2, "min": 2, "max": 1000, "step": 1}),
+                "inputcount": ("INT", {"default": 2, "min": 2, "max": 10, "step": 1}),
                 "prefix_select": (ONE_IMAGE_STYLE,),
                 "prompt_1": ("STRING", {"default": '', "multiline": True},),
                 "prompt_2": ("STRING", {"default": '', "multiline": True},),
             },
-            "optional": {},
+            "optional": {
+                'optional_1':("STRING",),
+            },
             "hidden": {
                 "prompt": "PROMPT",
                 "unique_id": "UNIQUE_ID",
