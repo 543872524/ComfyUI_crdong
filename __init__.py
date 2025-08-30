@@ -1,3 +1,4 @@
+from test_nodes.prompt_test import *
 from .crd_nodes.image_nodes import *
 from .crd_nodes.my_nodes import *
 from .crd_nodes.prompt_nodes import *
@@ -15,6 +16,7 @@ NODES_CONF = {
     "Wan22StepHandle": {"class": Wan22StepHandle, "name": "Wan22 Step Handle"},
     "PromptSelectorStr": {"class": PromptSelectorStr, "name": "Prompt Selector String"},
     "PromptSelectorList": {"class": PromptSelectorList, "name": "Prompt Selector List"},
+    "PromptBatchMulti": {"class": PromptBatchMulti, "name": "PromptBatchMulti"},
     "PromptExampleNode": {"class": PromptExampleNode, "name": "Prompt Example Node"},
     "PromptJoinOrList": {"class": PromptJoinOrList, "name": "Prompt Join or List"},
     "PromptList": {"class": PromptList, "name": "Prompt List"},

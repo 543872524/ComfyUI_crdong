@@ -178,42 +178,6 @@ class PromptExampleNode():
         return (prompt_select,)
 
 
-class PromptBatchMulti():
-    @classmethod
-    def INPUT_TYPES(s):
-        ONE_IMAGE_STYLE = get_prompt_conf().get('ONE_IMAGE_STYLE', [])
-        return {
-            "required": {
-                "inputcount": ("INT", {"default": 2, "min": 2, "max": 1000, "step": 1}),
-                "prefix_select": (ONE_IMAGE_STYLE,),
-                "prompt_1": ("STRING", {"default": '', "multiline": True},),
-                "prompt_2": ("STRING", {"default": '', "multiline": True},),
-            },
-        }
-
-    @classmethod
-    def IS_CHANGED(s, inputcount):
-        print("CRDNodes==========================================", inputcount)
-        m = hashlib.sha256()
-        return m.digest().hex()
-
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("string",)
-    FUNCTION = "combine"
-    CATEGORY = "CRDNodes/prompt"
-    DESCRIPTION = """
-    通过inputcount控制有多少个输入框
-"""
-
-    def combine(self, inputcount, prefix_select, **kwargs):
-        main_prompt = prefix_select + kwargs["prompt_1"]
-        for c in range(1, inputcount):
-            new_prompt = kwargs[f"prompt_{c + 1}"]
-            main_prompt = main_prompt + new_prompt
-
-        return (main_prompt,)
-
-
 class DynamicTextInput:
     @classmethod
     def INPUT_TYPES(cls):
