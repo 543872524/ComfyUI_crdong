@@ -49,7 +49,7 @@ class PromptSelectorList():
         IMAGE_STYLE = get_prompt_conf().get('IMAGE_STYLE', [])
         return {
             "required": {
-                "inputcount": ("INT", {"default": 2, "min": 2, "max": 1000, "step": 1}),
+                "inputcount": ("INT", {"default": 5, "min": 2, "max": 1000, "step": 1}),
                 "str_1": (IMAGE_STYLE, {"default": '————', }),
                 "str_2": (IMAGE_STYLE, {"default": '————', }),
                 "str_3": (IMAGE_STYLE, {"default": '————', }),

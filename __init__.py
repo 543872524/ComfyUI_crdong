@@ -14,6 +14,7 @@ NODES_CONF = {
     "VideoFrameSize": {"class": VideoFrameSize, "name": "Video Frame Size"},
     "Wan22StepHandle": {"class": Wan22StepHandle, "name": "Wan22 Step Handle"},
     "PromptSelectorStr": {"class": PromptSelectorStr, "name": "Prompt Selector String"},
+    "PromptSelectorList": {"class": PromptSelectorList, "name": "Prompt Selector List"},
     "PromptExampleNode": {"class": PromptExampleNode, "name": "Prompt Example Node"},
     "PromptJoinOrList": {"class": PromptJoinOrList, "name": "Prompt Join or List"},
     "PromptList": {"class": PromptList, "name": "Prompt List"},
