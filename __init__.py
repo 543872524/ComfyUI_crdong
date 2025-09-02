@@ -1,4 +1,5 @@
 from .test_nodes.prompt_test import *
+from .test_nodes.example_test import *
 from .crd_nodes.image_nodes import *
 from .crd_nodes.my_nodes import *
 from .crd_nodes.prompt_nodes import *
@@ -7,6 +8,7 @@ from .crd_nodes.audio_nodes import *
 
 NODES_CONF = {
     "INTConstant": {"class": INTConstant, "name": "INT Constant"},
+    "CRDNodesImageSelector": {"class": CRDNodesImageSelector, "name": "CRDNodesImageSelector"},
     "SimpleIntMathHandle": {"class": SimpleIntMathHandle, "name": "Simple Int Math Handle"},
     "SimpleJsonArrayHandle": {"class": SimpleJsonArrayHandle, "name": "Simple Json Array Handle"},
     "SimpleJsonObjectHandle": {"class": SimpleJsonObjectHandle, "name": "Simple Json Object Handle"},

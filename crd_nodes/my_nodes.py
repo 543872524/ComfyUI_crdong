@@ -3,6 +3,10 @@ import traceback
 import jsonpath
 
 
+class CrdContainsAnyDict(dict):
+    def __contains__(self, key):
+        return True
+
 class INTConstant:
     @classmethod
     def INPUT_TYPES(s):

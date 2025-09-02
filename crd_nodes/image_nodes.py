@@ -1,3 +1,5 @@
+from server import PromptServer
+
 BASE_RESOLUTIONS = [
     (512, 512),
     (512, 768),
@@ -48,6 +50,9 @@ class SelectImageSize:
             {
                 "image_size": (base_image_size, {"default": "936*1664(9:16)"},),
             },
+            "hidden": {
+                "unique_id": "UNIQUE_ID",
+            },
         }
 
     CATEGORY = "CRDNodes/image"
@@ -55,17 +60,28 @@ class SelectImageSize:
     RETURN_NAMES = ("width", "height",)
     FUNCTION = "get_image_size"
 
-    def get_image_size(self, image_size):
+    def get_image_size(self, image_size, unique_id=None):
         image_size_strip = image_size.strip()
         if len(image_size_strip) == 0:
-            return (1024, 1024)
+            return (1024, 1024,)
         if "(" in image_size_strip:
             _index = image_size_strip.index("(")
             image_size_strip = image_size_strip[:_index]
         image_size_strip_split = image_size_strip.split('*')
         image_width = int(image_size_strip_split[0])
         image_height = int(image_size_strip_split[1])
-        return (image_width, image_height)
+
+        if unique_id and PromptServer is not None:
+            try:
+                PromptServer.instance.send_progress_text(
+                    f"<tr><td>Output: </td><td><b>{image_width}</b> x <b>{image_height}</b></td></tr>",
+                    unique_id
+                )
+            except:
+                pass
+
+
+        return (image_width, image_height,)
 
 
 aaa = []

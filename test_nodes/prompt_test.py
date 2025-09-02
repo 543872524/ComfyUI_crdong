@@ -1,8 +1,14 @@
 import time
 
+from comfy_api.latest import ComfyExtension, io
+
 from server import PromptServer
 from ..config.prompt_conf import DEFAULT_EMPTY, get_prompt_conf
+from ..crd_nodes.my_nodes import CrdContainsAnyDict
 
+
+class TestExtendComfyNode(io.ComfyNode):
+    pass
 
 class PromptBatchMulti():
     @classmethod
@@ -15,19 +21,15 @@ class PromptBatchMulti():
                 "prompt_1": ("STRING", {"default": '', "multiline": True},),
                 "prompt_2": ("STRING", {"default": '', "multiline": True},),
             },
-            "optional": {
-                'optional_1':("STRING",),
-            },
+            "optional": CrdContainsAnyDict(),
             "hidden": {
-                "prompt": "PROMPT",
                 "unique_id": "UNIQUE_ID",
-                "extra_pnginfo": "EXTRA_PNGINFO"
             }
         }
 
     @classmethod
-    def IS_CHANGED(s, inputcount):
-        print("CRDNodes==========================================", inputcount)
+    def IS_CHANGED(s, **kwargs):
+        print("CRDNodes==========================================")
         return float(time.time())
 
     RETURN_TYPES = ("STRING",)
@@ -38,7 +40,7 @@ class PromptBatchMulti():
     通过inputcount控制有多少个输入框
 """
 
-    def combine(self, inputcount, prefix_select,unique_id=None, **kwargs):
+    def combine(self, inputcount, prefix_select, unique_id=None, **kwargs):
         node_id = str(unique_id[0]) if isinstance(unique_id, list) else str(unique_id)
 
         main_prompt = prefix_select + kwargs["prompt_1"]
@@ -46,11 +48,13 @@ class PromptBatchMulti():
             new_prompt = kwargs[f"prompt_{c + 1}"]
             main_prompt = main_prompt + new_prompt
 
-        try:
-            PromptServer.instance.send_sync("crd_multi_input_update", {
-                "id": node_id,
-            })
-        except Exception as e:
-            pass
+        if unique_id and PromptServer is not None:
+            try:
+                PromptServer.instance.send_progress_text(
+                    f"<tr><td>Output: </td><td><b></b></td></tr>",
+                    unique_id
+                )
+            except:
+                pass
 
         return (main_prompt,)
