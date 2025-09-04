@@ -13,7 +13,7 @@ def get_prompt_conf():
     prompt_conf_dict = {}
     try:
         with open(os.path.join(config_directory, 'example_prompt_list.json'), 'r', encoding='utf-8') as f:
-            #print("CRDNodes：读取example_prompt_list.json")
+            # print("CRDNodes：读取example_prompt_list.json")
             read = f.read()
             data = json.loads(read)
             temp_list1 = []
@@ -22,7 +22,7 @@ def get_prompt_conf():
             prompt_conf_dict['EXAMPLE_PROMPT'] = temp_list1
 
         with open(os.path.join(config_directory, 'image_style.json'), 'r', encoding='utf-8') as f:
-            #print("CRDNodes：读取image_style.json")
+            # print("CRDNodes：读取image_style.json")
             f_read = f.read()
             data = json.loads(f_read)
             temp_list2 = []
@@ -30,9 +30,8 @@ def get_prompt_conf():
                 temp_list2.append(i)
             prompt_conf_dict['IMAGE_STYLE'] = temp_list2
 
-
         with open(os.path.join(config_directory, 'one_image_style.json'), 'r', encoding='utf-8') as f:
-            #print("CRDNodes：读取one_image_style.json")
+            # print("CRDNodes：读取one_image_style.json")
             f_read = f.read()
             data = json.loads(f_read)
             temp_list3 = []
@@ -45,3 +44,10 @@ def get_prompt_conf():
     except:
         traceback.print_exc()
 
+
+def get_style_conf():
+    with open(os.path.join(config_directory, 'style_conf.json'), 'r', encoding='utf-8') as f:
+        # print("CRDNodes：读取example_prompt_list.json")
+        read = f.read()
+        data = json.loads(read)
+    return data
