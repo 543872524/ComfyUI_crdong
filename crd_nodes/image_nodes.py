@@ -1,6 +1,7 @@
 from server import PromptServer
 
 BASE_RESOLUTIONS = [
+    (480, 832),
     (512, 512),
     (512, 768),
     (576, 1024),
@@ -71,18 +72,14 @@ class SelectImageSize:
         image_width = int(image_size_strip_split[0])
         image_height = int(image_size_strip_split[1])
 
-        if unique_id and PromptServer is not None:
-            try:
-                PromptServer.instance.send_progress_text(
-                    f"<tr><td>Output: </td><td><b>{image_width}</b> x <b>{image_height}</b></td></tr>",
-                    unique_id
-                )
-            except:
-                pass
+        # if unique_id and PromptServer is not None:
+        #     try:
+        #         PromptServer.instance.send_progress_text(
+        #             f"<tr><td>Output: </td><td><b>{image_width}</b> x <b>{image_height}</b></td></tr>",
+        #             unique_id
+        #         )
+        #     except:
+        #         pass
 
 
         return (image_width, image_height,)
-
-
-aaa = []
-print(aaa)

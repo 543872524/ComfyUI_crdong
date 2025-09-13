@@ -7,7 +7,7 @@ class CrdContainsAnyDict(dict):
     def __contains__(self, key):
         return True
 
-class INTConstant:
+class CRDINTConstant:
     @classmethod
     def INPUT_TYPES(s):
         return {"required":
@@ -42,17 +42,17 @@ class SimpleIntMathHandle:
     FUNCTION = "get_video_step"
 
     def get_video_step(self, first, second, operator):
-        if operator is '+':
+        if operator == '+':
             third = first + second
-        elif operator is '-':
+        elif operator == '-':
             third = first - second
-        elif operator is '*':
+        elif operator == '*':
             third = first * second
-        elif operator is '/':
+        elif operator == '/':
             third = first / second
-        elif operator is '**':
+        elif operator == '**':
             third = first ** second
-        elif operator is '//':
+        elif operator == '//':
             third = first // second
         else:
             third = first - second
@@ -118,7 +118,4 @@ class SimpleJsonObjectHandle:
             traceback.print_exc()
             return ("", "", "",)
 
-    @classmethod
-    def IS_CHANGED(s, json_str):
-        print(f"CRDNodes：json_str has changed，{json_str}")
-        return True
+

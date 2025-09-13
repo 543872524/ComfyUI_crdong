@@ -7,7 +7,7 @@ from .crd_nodes.video_nodes import *
 from .crd_nodes.audio_nodes import *
 
 NODES_CONF = {
-    "INTConstant": {"class": INTConstant, "name": "INT Constant"},
+    "INTConstant": {"class": CRDINTConstant, "name": "CRD INT Constant"},
     "CRDNodesImageSelector": {"class": CRDNodesImageSelector, "name": "CRDNodesImageSelector"},
     "SimpleIntMathHandle": {"class": SimpleIntMathHandle, "name": "Simple Int Math Handle"},
     "SimpleJsonArrayHandle": {"class": SimpleJsonArrayHandle, "name": "Simple Json Array Handle"},
@@ -15,6 +15,7 @@ NODES_CONF = {
     "SelectImageSize": {"class": SelectImageSize, "name": "Select Image Size"},
     "VideoTimeAndFPS": {"class": VideoTimeAndFPS, "name": "Video Time & FPS"},
     "VideoFrameSize": {"class": VideoFrameSize, "name": "Video Frame Size"},
+    "VideoSizeAndFps": {"class": VideoSizeAndFps, "name": "Video Size & Fps"},
     "Wan22StepHandle": {"class": Wan22StepHandle, "name": "Wan22 Step Handle"},
     "PromptSelectorStr": {"class": PromptSelectorStr, "name": "Prompt Selector String"},
     "PromptSelectorList": {"class": PromptSelectorList, "name": "Prompt Selector List"},
