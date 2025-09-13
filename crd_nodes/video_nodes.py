@@ -78,6 +78,8 @@ class VideoSizeAndFps:
             v_size = (1280, 720) if swap else (720, 1280)
         elif video_size == "1080P":
             v_size = (1920, 1080) if swap else (1080, 1920)
+        else:
+            v_size = video_size
         return (video_fps, v_fps_float, v_length) + v_size
 
 
