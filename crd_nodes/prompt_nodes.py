@@ -1,12 +1,12 @@
 import hashlib
-from ..config.prompt_conf import DEFAULT_EMPTY, get_prompt_conf
+from ..config.prompt_conf import DEFAULT_EMPTY, get_example_list, get_image_style, get_one_image_style
 
 
 class PromptSelectorStr:
 
     @classmethod
     def INPUT_TYPES(s):
-        ONE_IMAGE_STYLE = get_prompt_conf().get('ONE_IMAGE_STYLE', [])
+        ONE_IMAGE_STYLE = get_one_image_style()
         return {"required":
             {
                 "prefix_select": (ONE_IMAGE_STYLE, {"default": '————', }),
@@ -34,19 +34,43 @@ class PromptSelectorStr:
             prompt_str = style_input + prefix_input + body + suffix
         return (prompt_str,)
 
+
+class PromptSelectorStrV2:
+
     @classmethod
-    def IS_CHANGED(s, prefix_select):
-        print(f'>>>>>>>>>>>>>>>>>>{prefix_select}发生了变化>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-        # m = hashlib.sha256()
-        # m.update(prefix_input)
-        return 111
+    def INPUT_TYPES(s):
+        ONE_IMAGE_STYLE = get_one_image_style()
+        return {"required":
+            {
+                "prefix_select": (ONE_IMAGE_STYLE, {"default": '————', }),
+                "style_input": ("STRING", {"default": '', "multiline": False},),
+                "prefix_input": ("STRING", {"default": '', "multiline": True},),
+            },
+        }
+
+    CATEGORY = "CRDNodes/prompt"
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("string",)
+    FUNCTION = "get_prompt_str"
+
+    def get_prompt_str(self, prefix_select, style_input, prefix_input):
+        if prefix_select is DEFAULT_EMPTY or prefix_select == DEFAULT_EMPTY:
+            prefix_select = ""
+
+        if prefix_select is '自定义':
+            prompt_str = style_input + prefix_input
+        elif len(style_input) == 0 or style_input == '':
+            prompt_str = prefix_select + prefix_input
+        else:
+            prompt_str = style_input + prefix_input
+        return (prompt_str,)
 
 
 class PromptSelectorList():
 
     @classmethod
     def INPUT_TYPES(s):
-        IMAGE_STYLE = get_prompt_conf().get('IMAGE_STYLE', [])
+        IMAGE_STYLE = get_image_style()
         return {
             "required": {
                 "inputcount": ("INT", {"default": 5, "min": 2, "max": 1000, "step": 1}),
@@ -81,7 +105,7 @@ class PromptList:
 
     @classmethod
     def INPUT_TYPES(cls):
-        ONE_IMAGE_STYLE = get_prompt_conf().get('ONE_IMAGE_STYLE', [])
+        ONE_IMAGE_STYLE = get_image_style()
         return {"required": {
             "prefix_select": (ONE_IMAGE_STYLE, {"default": '————', }),
             "prompt_1": ("STRING", {"multiline": True, "default": ""}),
@@ -125,7 +149,7 @@ class PromptJoinOrList():
 
     @classmethod
     def INPUT_TYPES(s):
-        IMAGE_STYLE = get_prompt_conf().get('IMAGE_STYLE', [])
+        IMAGE_STYLE = get_image_style()
         return {
             "required": {
                 "image_style": (IMAGE_STYLE, {"default": '————', }),
@@ -160,10 +184,10 @@ class PromptJoinOrList():
 class PromptExampleNode():
     @classmethod
     def INPUT_TYPES(s):
-        EXAMPLE_PROMPT = get_prompt_conf().get('EXAMPLE_PROMPT', [])
+        EXAMPLE_PROMPT = get_example_list()
         return {
             "required": {
-                "prompt_select": (EXAMPLE_PROMPT, {"default": '————', }),
+                "prompt_select": (EXAMPLE_PROMPT, {"default": '————', "multiline": True}),
             },
         }
 
@@ -178,27 +202,6 @@ class PromptExampleNode():
         return (prompt_select,)
 
 
-class DynamicTextInput:
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "text_count": ("INT", {"default": 1, "min": 1, "max": 10, "step": 1}),
-            }
-        }
-
-    RETURN_TYPES = ("LIST",)
-    RETURN_NAMES = ("text_list",)
-    FUNCTION = "generate_texts"
-    CATEGORY = "CRDNodes/prompt"
-
-    def generate_texts(self, text_count, **kwargs):
-        # 动态读取每个文本框的值
-        text_list = [
-            kwargs.get(f"text_{i}", "")
-            for i in range(1, text_count + 1)
-        ]
-        return (text_list,)
 
 
 class CRDJoinStringMulti:
@@ -220,12 +223,11 @@ class CRDJoinStringMulti:
     RETURN_NAMES = ("string",)
     FUNCTION = "combine"
     CATEGORY = "CRDNodes/prompt"
-    DESCRIPTION = """
-Creates single string, or a list of strings, from  
-multiple input strings.  
-You can set how many inputs the node has,  
-with the **inputcount** and clicking update.
-"""
+    DESCRIPTION = """Creates single string, or a list of strings, from  
+            multiple input strings.  
+            You can set how many inputs the node has,  
+            with the **inputcount** and clicking update.
+            """
 
     def combine(self, inputcount, delimiter, **kwargs):
         string = kwargs["string_1"]
