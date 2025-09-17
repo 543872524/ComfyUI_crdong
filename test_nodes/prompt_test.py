@@ -3,7 +3,7 @@ import time
 from comfy_api.latest import ComfyExtension, io
 
 from server import PromptServer
-from ..config.prompt_conf import DEFAULT_EMPTY, get_prompt_conf
+from ..config.prompt_conf import DEFAULT_EMPTY, get_one_image_style
 from ..crd_nodes.my_nodes import CrdContainsAnyDict
 
 
@@ -13,7 +13,7 @@ class TestExtendComfyNode(io.ComfyNode):
 class PromptBatchMulti():
     @classmethod
     def INPUT_TYPES(s):
-        ONE_IMAGE_STYLE = get_prompt_conf().get('ONE_IMAGE_STYLE', [])
+        ONE_IMAGE_STYLE = get_one_image_style()
         return {
             "required": {
                 "inputcount": ("INT", {"default": 2, "min": 2, "max": 10, "step": 1}),
