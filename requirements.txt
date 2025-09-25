@@ -1,2 +1,4 @@
 jsonpath
 mutagen
+descript-audiotools-unofficial
+numpy<2
